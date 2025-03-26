@@ -3,8 +3,9 @@ import requests
 from PIL import Image
 from io import BytesIO
 
+
 # Hugging Face API setup
- API_URL = "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
+API_URL = "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
 HEADERS = {"Authorization": "Bearer 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"}  # Replace with your token
 
 # Set page configuration
