@@ -18,15 +18,18 @@ st.set_page_config(
 # Function to generate images
 def generate_images(prompt, num_images=1):
     images = []
-    for _ in range(num_images):
+    for i in range(num_images):
         payload = {"inputs": prompt}
         response = requests.post(API_URL, headers=HEADERS, json=payload)
+        
         if response.status_code == 200:
             images.append(Image.open(BytesIO(response.content)))
         else:
-            st.error(f"Error: {response.status_code} - {response.text}")
+            st.error(f"Error {response.status_code}: {response.text}")
             return []
+    
     return images
+
 
 st.sidebar.write("""
     **Welcome to the AI Image Generator!**  
@@ -50,6 +53,7 @@ with col1:
     st.subheader("Input Scenario")
     prompt = st.text_input("Describe your scenario", "A butterfly in the sky")
     num_images = st.slider("Number of images:", 1, 5, 1)
+
     if st.button("Generate Image"):
         with st.spinner("Generating..."):
             images = generate_images(prompt, num_images)
@@ -57,12 +61,21 @@ with col1:
 
 with col2:
     st.subheader("Output Images")
+
     if "generated_images" in st.session_state and st.session_state["generated_images"]:
-        for img in st.session_state["generated_images"]:
+        for idx, img in enumerate(st.session_state["generated_images"]):
             st.image(img, caption=f"Generated for: '{prompt}'", use_column_width=True)
+            
             img_bytes = BytesIO()
-            img.save(img_bytes, format='PNG')
-            st.download_button("Download Image", img_bytes.getvalue(), file_name="generated_image.png", mime="image/png")
+            img.save(img_bytes, format="PNG")
+
+            st.download_button(
+                label=f"Download Image {idx+1}",
+                data=img_bytes.getvalue(),
+                file_name=f"generated_image_{idx+1}.png",
+                mime="image/png",
+                key=f"download_button_{idx}"
+            )
     else:
         st.info("Your generated images will appear here.")
 
@@ -89,3 +102,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
