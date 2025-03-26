@@ -5,7 +5,7 @@ from io import BytesIO
 
 
 # Hugging Face API setup
-API_URL = "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
+API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2"
 HEADERS = {"Authorization": "Bearer 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"}  # Replace with your token
 
 # Set page configuration
