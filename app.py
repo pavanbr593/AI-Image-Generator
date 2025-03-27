@@ -42,6 +42,8 @@ st.sidebar.write("""
 Pavan Bendre R   
 AI Image Generator  
 [Github](https://github.com/pavanbr593)
+
+
 [LinkedIn](https://www.linkedin.com/in/pavan-bendre-r)  
 """)
 
