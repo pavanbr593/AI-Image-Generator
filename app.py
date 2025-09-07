@@ -5,7 +5,7 @@ from io import BytesIO
 
 # Hugging Face API setup
 API_URL = "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4"
-HEADERS = {"Authorization": "Bearer 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"}  # Replace with your token
+HEADERS = {"Authorization": "Bearer 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"}  # Replace with your token
 
 # Set page configuration
 st.set_page_config(
